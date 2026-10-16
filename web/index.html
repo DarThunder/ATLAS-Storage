@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ATLAS</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <section id="login-view" hidden>
+      <div class="login-card">
+        <h1>ATLAS</h1>
+        <p class="muted">Advanced Technology for Linked Archival Systems</p>
+
+        <div
+          class="auth-tabs"
+          style="display: flex; gap: 8px; margin-bottom: 1rem"
+        >
+          <button id="tab-login" type="button" class="active">
+            Iniciar sesión
+          </button>
+          <button id="tab-register" type="button" class="ghost">
+            Registrarse
+          </button>
+        </div>
+
+        <form id="login-form">
+          <label
+            >Usuario
+            <input name="username" autocomplete="username" required autofocus
+          /></label>
+          <label
+            >Contraseña
+            <input
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+          /></label>
+          <p id="login-error" class="error" role="alert"></p>
+          <button class="primary" type="submit">Entrar</button>
+        </form>
+
+        <form id="register-form" hidden>
+          <label
+            >Usuario <input name="username" autocomplete="username" required
+          /></label>
+          <label
+            >Contraseña
+            <input
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              required
+          /></label>
+          <p id="register-error" class="error" role="alert"></p>
+          <button class="primary" type="submit">Crear cuenta</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="app-view" hidden>
+      <header class="topbar">
+        <a class="brand" href="#/">ATLAS</a>
+        <nav>
+          <a id="nav-files" href="#/">Mis archivos</a>
+          <a id="nav-trash" href="#/trash">Papelera</a>
+        </nav>
+        <span class="spacer"></span>
+        <span id="whoami" class="muted"></span>
+        <button id="logout" class="ghost">Salir</button>
+      </header>
+
+      <main id="dropzone">
+        <div class="toolbar">
+          <nav id="crumbs" class="crumbs" aria-label="Ruta"></nav>
+          <span class="spacer"></span>
+          <div id="files-actions">
+            <button id="new-folder">Nueva carpeta</button>
+            <button id="upload-btn" class="primary">Subir archivos</button>
+            <input id="file-input" type="file" multiple hidden />
+          </div>
+          <div id="trash-actions" hidden>
+            <button id="empty-trash" class="danger">Vaciar papelera</button>
+          </div>
+        </div>
+
+        <div id="list" class="list" role="list"></div>
+        <p id="empty" class="muted center" hidden></p>
+        <div class="center">
+          <button id="load-more" hidden>Cargar más</button>
+        </div>
+        <div id="drop-hint" hidden>Suelta los archivos para subirlos aquí</div>
+      </main>
+
+      <aside id="uploads" hidden>
+        <div class="uploads-head">
+          <strong>Subidas</strong
+          ><button id="uploads-clear" class="ghost">Limpiar</button>
+        </div>
+        <div id="uploads-list"></div>
+      </aside>
+
+      <dialog id="preview">
+        <div class="preview-head">
+          <strong id="preview-title"></strong>
+          <span class="spacer"></span>
+          <a id="preview-download" class="button" download>Descargar</a>
+          <button id="preview-close" class="ghost">Cerrar</button>
+        </div>
+        <div id="preview-body"></div>
+      </dialog>
+    </section>
+
+    <div id="toast" role="status" hidden></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
